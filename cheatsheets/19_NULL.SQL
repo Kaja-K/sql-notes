@@ -72,7 +72,8 @@ FROM Customers c
 LEFT JOIN Orders o ON c.CustomerID = o.CustomerID
 WHERE o.CustomerID IS NULL;   -- customers with no orders
 
--- ── CASE WITH NULL ───────────────────────────────────────────
+-- ── CASE ────────────────────────────────────────────────────
+-- Case with null
 SELECT FirstName,
     CASE
         WHEN Phone IS NULL THEN 'Missing'
@@ -80,6 +81,17 @@ SELECT FirstName,
         ELSE Phone
     END AS PhoneStatus
 FROM Customers;
+--Case with numbers
+SELECT
+  CASE
+    WHEN SUM(number1) % 2 = 0 THEN MAX(number1)
+    ELSE MIN(number1)
+  END AS number1,
+  CASE
+    WHEN SUM(number2) % 2 = 0 THEN MAX(number2)
+    ELSE MIN(number2)
+  END AS number2
+FROM numbers;
 
 -- ── PRACTICAL CLEANUP ────────────────────────────────────────
 -- replace empty strings with NULL (standardise missing data)
