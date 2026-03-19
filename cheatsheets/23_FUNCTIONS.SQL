@@ -1,8 +1,3 @@
--- ══════════════════════════════════════════════════════════════
---  FUNCTIONS  cheatsheet
---  A function returns a value and can be used directly in SQL
--- ══════════════════════════════════════════════════════════════
-
 -- ── FUNCTION vs PROCEDURE ────────────────────────────────────
 --
 --  FUNCTION                          PROCEDURE
