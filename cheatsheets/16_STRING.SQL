@@ -93,3 +93,20 @@ SELECT SUBSTRING_INDEX(FullName, ' ', 1) AS FirstName FROM Users;
 SELECT CONCAT(LEFT(Email, 2), '***', SUBSTRING_INDEX(Email, '@', -1)) AS MaskedEmail
 FROM Customers;
 -- anna@gmail.com → an***gmail.com
+
+-- ── SPLIT_PART (PostgreSQL) ───────────────────────────────────
+SELECT SPLIT_PART('a,b,c', ',', 1);     -- 'a'   first element
+SELECT SPLIT_PART('a,b,c', ',', 2);     -- 'b'   second element
+SELECT SPLIT_PART('a,b,c', ',', 3);     -- 'c'   third element
+SELECT SPLIT_PART('a,b,c', ',', 99);    -- ''    index out of range → empty string
+
+-- practical: take only the first characteristic
+SELECT SPLIT_PART(characteristics, ',', 1) AS characteristic FROM monsters;
+
+-- extract parts of structured strings
+SELECT SPLIT_PART(email, '@', 1) AS username FROM users;   -- 'anna'
+SELECT SPLIT_PART(email, '@', 2) AS domain   FROM users;   -- 'gmail.com'
+
+-- NOTE: MySQL equivalent is SUBSTRING_INDEX(str, delim, count)
+SELECT SUBSTRING_INDEX('a,b,c', ',', 1);   -- 'a'   (from the left)
+SELECT SUBSTRING_INDEX('a,b,c', ',', -1);  -- 'c'   (from the right, negative index)
